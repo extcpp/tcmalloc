@@ -71,6 +71,7 @@ target_compile_features(tcmalloc_common PUBLIC cxx_std_17)
 target_link_libraries(tcmalloc_common PUBLIC
     absl::base
     absl::debugging
+    absl::flags
 )
 add_library(tcmalloc::common ALIAS tcmalloc_common)
 
