@@ -69,6 +69,13 @@ add_library(tcmalloc_common STATIC
 target_include_directories(tcmalloc_common PUBLIC . )
 target_compile_features(tcmalloc_common PUBLIC cxx_std_17)
 target_link_libraries(tcmalloc_common PUBLIC
+    # These libraries are in the PUBLIC interface to allow other
+    # applications/libs including `tcmalloc` to use all functions
+    # defined in headers. Those libs are potentially part of
+    # the interface and not just used internally.
+    #
+    # TODO: Check how much of `absl` is in the `tcmalloc` interface.
+
     absl::base
     absl::debugging
     absl::flags
@@ -83,6 +90,7 @@ add_library(tcmalloc_always STATIC
 target_include_directories(tcmalloc_always PUBLIC . )
 target_compile_features(tcmalloc_always PUBLIC cxx_std_17)
 target_link_libraries(tcmalloc_always PUBLIC
+    # See above comment about PUBLIC link interface.
     tcmalloc_common
 )
 add_library(tcmalloc::always ALIAS tcmalloc_always)
