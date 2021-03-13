@@ -4,9 +4,11 @@ project(tcmalloc CXX)
 ## dependencies
 if(NOT TARGET absl::base)
     include(FetchContent)
+    set(ABSL_CXX_STANDARD 17 CACHE STRING "")  # this should suffice!!
+    set(CMAKE_CXX_STANDARD 17 CACHE STRING "") # this makes me sad :(
     FetchContent_Declare(abseil_github
         GIT_REPOSITORY https://github.com/abseil/abseil-cpp.git
-        GIT_TAG master
+        GIT_TAG a76698790753d2ec71f655cdc84d61bcb27780d4
         GIT_PROGRESS TRUE
     )
     FetchContent_MakeAvailable(abseil_github)
