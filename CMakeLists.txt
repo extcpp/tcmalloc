@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.14)
-project(tcmalloc CXX)
+project(tcmalloc
+    LANGUAGES CXX ASM
+    VERSION 0.0.0
+)
 
 ## dependencies
 if(NOT TARGET absl::base)
@@ -15,7 +18,6 @@ if(NOT TARGET absl::base)
 endif()
 
 ## common parts of tcmalloc
-enable_language(ASM)
 add_library(tcmalloc_common STATIC
     tcmalloc/arena.cc
     tcmalloc/background.cc
